@@ -1,7 +1,4 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
 import re
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
@@ -18,7 +15,7 @@ Y = y.reshape(-1,1) #Needed
 
 corpus = []
 corpus2 = []
-for i in range (0, 299999):
+for i in range (0, 300000):
     #Cleaning the dataset from all uness characters
     question = re.sub('[^a-zA-Z0-9]',' ', dataset['question1'][i]) #removes everything other than a-z or A-Z from Question [1]
     question = question.lower() #syntax is different, causes confusion. #HL
@@ -29,7 +26,7 @@ for i in range (0, 299999):
     question = ' '.join(question) #join all the elements of the lists. Final step
     corpus.append(question)
 
-for i in range (0, 299999):
+for i in range (0, 300000):
     #Cleaning the dataset from all uness characters
     question = re.sub('[^a-zA-Z]',' ', dataset['question2'][i]) #removes everything other than a-z or A-Z from Question [1]
     question = question.lower() #syntax is different, causes confusion. #HL
