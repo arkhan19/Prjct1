@@ -3,7 +3,7 @@ import re
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 import numpy as np
-
+from sklearn.feature_extraction.text import CountVectorizer
 
 #....PreProcessing....#
 #Importing Data
@@ -11,7 +11,7 @@ dataset = pd.read_csv('/Users/f3n1Xx/Documents/PycharmProjects/Prjct1/Data.csv')
 X = dataset.iloc[:, 3:5].values #2nd and 3rd col
 y = dataset.iloc[:, 5].values #Last colm array
 #X = x.reshape(-1,1) #Not Needed
-Y = y.reshape(-1,1) #Needed
+Y = y.reshape(-1,1) #Needed Here
 
 #Missing Values
 dataset = dataset.replace(np.nan, ' ', regex=True) #Only works on dataframe object not on ndarray.
@@ -39,3 +39,9 @@ for i in range (0, 300000):
     question = [ps.stem(word) for word in question if not word in set(stopwords.words('english'))] #will keep the root words, using porterstemmer helps in creating bag of words
     question = ' '.join(question) #join all the elements of the lists. Final step
     corpus2.append(question)
+
+#Tokenization
+    cv = CountVectorizer()
+    X = cv.fit_transform(corpus).toarray()
+
+##DPP_End##
