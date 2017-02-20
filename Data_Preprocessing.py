@@ -2,6 +2,7 @@ import pandas as pd
 import re
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
+import numpy as np
 
 
 #....PreProcessing....#
@@ -12,6 +13,8 @@ y = dataset.iloc[:, 5].values #Last colm array
 #X = x.reshape(-1,1) #Not Needed
 Y = y.reshape(-1,1) #Needed
 
+#Missing Values
+dataset = dataset.replace(np.nan, ' ', regex=True) #Only works on dataframe object not on ndarray.
 
 corpus = []
 corpus2 = []
