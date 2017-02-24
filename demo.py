@@ -5,15 +5,14 @@ from nltk.corpus import stopwords
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from scipy.sparse import *
+from sklearn.feature_extraction.text import CountVectorizer
 
 # ....PreProcessing....
 # Importing Data
 dataset = pd.read_csv('Data.csv')
-X = dataset.iloc[:, 3:5].values  # 2nd and 3rd col
-y = dataset.iloc[:, 5].values  # Last column array
-Y = y.reshape(-1, 1)  # Needed Here
+# X = dataset.iloc[:, 3:5].values  # 2nd and 3rd col
+# y = dataset.iloc[:, 5].values  # Last column array
+# Y = y.reshape(-1, 1)  # Needed Here
 
 # Missing Values
 dataset = dataset.replace(np.nan, ' ', regex=True)  # Only works on dataframe object not on ndarray
@@ -49,12 +48,18 @@ for i in range(0, 300000):
 
 
 # Tokenization
-cv = CountVectorizer(max_features=1500)
-X1 = cv.fit_transform(corpus).toarray()
-X2 = cv.fit_transform(corpus2).toarray()
-X_D = np.concatenate((X1,X2),axis = 1)
+cv = CountVectorizer(max_features=100000)
+X[:,-1:] = cv.fit_transform(corpus).toarray()
 
 # Splitting the dataset into Training set and Test set
-X_train, X_test, Y_train, Y_test = train_test_split(X_D, Y, test_size=0.20, random_state=0)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.25, random_state=0)
+
+# Feature Scaling
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
 
 
+import gensim
+questions = corpus + corpus2
+model = gensim.models.Word2Vec(questions, size=300000, workers=16, iter=10, negative=20)

@@ -24,7 +24,7 @@ from sklearn.metrics import accuracy_score
 classifier = Sequential()
 
 # Adding I/P - Hidden - O/P layers
-classifier.add(Dense(output_dim=55, init='uniform', activation='relu', input_dim= 110))
+classifier.add(Dense(output_dim=55, init='uniform', activation='relu', input_dim= 3000))
 classifier.add(Dense(output_dim=55, init='uniform', activation='relu'))  # No Input Dim for 2nd Hidden layer
 classifier.add(Dense(output_dim=1, init='uniform', activation='sigmoid'))  # Output Layer; Sigmoid function will
                                                                             # produce probablites for Output layer
@@ -33,10 +33,11 @@ classifier.add(Dense(output_dim=1, init='uniform', activation='sigmoid'))  # Out
 classifier.compile(optimizer='adam', metrics=['accuracy'], loss ='binary_crossentropy')
 
 #Fitting
-classifier.fit(X_train, Y_train, batch_size= 19, nb_epoch=99, shuffle=True)
+classifier.fit(X_train, Y_train, batch_size= 19, nb_epoch=9, shuffle=True)
 
 #Prediction
 Y_pred = classifier.predict(X_test)
+Y_pred = np.int64(Y_pred)
 
 # Accuracy
-Accuracy = accuracy_score(Y_test, Y_pred, normalize=False, sample_weight=None)
+Accuracy = accuracy_score(Y_test, Y_pred, normalize=True, sample_weight=None)

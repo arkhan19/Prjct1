@@ -1,7 +1,7 @@
 Requirements:
 1. Pandas
 2. Numpy
-3. nltk
+3. nltk (3.2.1)
 4. Sklearn
 
 Input:
@@ -14,11 +14,11 @@ Prediction of Similarity; 0 for not similar, 1 for similar
 Pre Processing on Data:
 1. Missing Values
 2. Construction of Corpus of Words of both Question 1 and Question 2
-3. Used NLTK to remove stopwords
+3. Used NLTK to remove stopwords (nltk.download('stopwords')
 4. Tokenization
-5. Standard Scaling
+5. Concatenation of Both Vectors of Question1 and Question2
 
 Classifier:
-Naive Bayes Classifier
+ANN
 
 Accuracy Achieved on Test Set :
