@@ -6,7 +6,8 @@ Requirements:
 
 Input:
 Dataset Consisted of Word Sets. Removed Independent variables which doesn't correlate directly
-to the Dependent variable. Features used are : Question 1 and Question 2.
+to the Dependent variable. Features used are : Question 1 and Question 2. Vectorized into separate corpus, concatenated
+to create finalized Independect feature set.
 
 Output:
 Prediction of Similarity; 0 for not similar, 1 for similar
@@ -21,4 +22,4 @@ Pre Processing on Data:
 Classifier:
 ANN
 
-Accuracy Achieved on Test Set :
+Accuracy Achieved on Test Set : 67
