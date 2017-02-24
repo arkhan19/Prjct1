@@ -1,0 +1,24 @@
+Requirements:
+1. Pandas
+2. Numpy
+3. nltk
+4. Sklearn
+
+Input:
+Dataset Consisted of Word Sets. Removed Independent variables which doesn't correlate directly
+to the Dependent variable. Features used are : Question 1 and Question 2.
+
+Output:
+Prediction of Similarity; 0 for not similar, 1 for similar
+
+Pre Processing on Data:
+1. Missing Values
+2. Construction of Corpus of Words of both Question 1 and Question 2
+3. Used NLTK to remove stopwords
+4. Tokenization
+5. Standard Scaling
+
+Classifier:
+Naive Bayes Classifier
+
+Accuracy Achieved on Test Set :
